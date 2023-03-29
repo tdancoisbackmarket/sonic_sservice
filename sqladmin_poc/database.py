@@ -32,11 +32,11 @@ def get_url() -> str:
     """
     Return the database URL to connect to.
     """
-    host = "127.0.0.1"
+    host = "ec2-52-215-209-64.eu-west-1.compute.amazonaws.com"
     port = "5432"
-    username = "admin"
-    password = "admin"
-    dbname = "shipping-service"
+    username = "vrqpywvlfddapl"
+    password = "cadf84c9a894f459fd0d08d4db26f98748813ca204274585c7218dad15fd730c"
+    dbname = "d7sdkrgqjbrmgo"
     return f"postgresql://{username}:{password}@{host}:{port}/{dbname}"
 
 
