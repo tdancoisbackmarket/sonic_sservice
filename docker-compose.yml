@@ -1,0 +1,27 @@
+version: "3.7"
+
+x-base: &base
+  environment: &base_env
+
+  volumes:
+    - .:/var/www/jung/shipping-service
+  depends_on:
+    - db
+
+services:
+  db:
+    image: 154005363564.dkr.ecr.us-east-1.amazonaws.com/docker.io/library/postgres:12.4
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: shipping-service
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      # - ./conf/postgres/db_init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+volumes:
+  db-data:
+  rabbitmq-data:
+  rabbitmq-logs:

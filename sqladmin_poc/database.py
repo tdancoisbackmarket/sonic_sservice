@@ -7,11 +7,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 
-from settings import settings
-
-
 from sqlalchemy import Column
 from sqlalchemy import Integer
+from sqlalchemy import String
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import as_declarative
 
@@ -23,7 +21,10 @@ class Base:
     id: Mapped[int] = Column(Integer, primary_key=True)
 
 class Post(Base):
-    pass
+    __allow_unmapped__ = True
+    __tablename__ = "post"
+
+    content = Column(String(50))
 
 
 
@@ -31,11 +32,11 @@ def get_url() -> str:
     """
     Return the database URL to connect to.
     """
-    host = settings.DATABASE_HOST
-    port = settings.DATABASE_PORT
-    username = settings.DATABASE_USERNAME
-    password = quote(settings.DATABASE_PASSWORD, safe="")
-    dbname = settings.DATABASE_NAME
+    host = "127.0.0.1"
+    port = "5432"
+    username = "admin"
+    password = "admin"
+    dbname = "shipping-service"
     return f"postgresql://{username}:{password}@{host}:{port}/{dbname}"
 
 
